@@ -21,6 +21,7 @@ public class AsyncTaskDemoActivity extends Activity {
         progreso.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
     }
 
+    //Método de acción del botón
     public void iniciarTarea(View v){
         Tarea tarea=new Tarea();
         tarea.execute();
@@ -28,6 +29,7 @@ public class AsyncTaskDemoActivity extends Activity {
 
     public class Tarea extends AsyncTask<Void, Integer, String>{
 
+        //Ejecuta las tareas en segundo plano, en este caso solo duerme el hilo durante 1 segundo
         @Override
         protected String doInBackground(Void... voids) {
             for (int i=0;i<11;i++){
@@ -47,6 +49,8 @@ public class AsyncTaskDemoActivity extends Activity {
             progreso.show();
         }
 
+        //Cuando termina la ejecución de doInBackground muestra el textView y cierra el diálogo de
+        // progreso
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
@@ -56,6 +60,7 @@ public class AsyncTaskDemoActivity extends Activity {
 
         }
 
+        //Actualiza el diálogo de progreso
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
